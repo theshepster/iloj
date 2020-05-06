@@ -3,4 +3,5 @@ flask-wtf
 flask-bootstrap
 numpy
 pandas
+python-dotenv
 selenium
