@@ -1,6 +1,7 @@
 flask
 flask-wtf
 flask-bootstrap
+gunicorn
 numpy
 pandas
 python-dotenv
