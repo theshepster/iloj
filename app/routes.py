@@ -8,22 +8,7 @@ import re
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'username': 'Miguel'}
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Gregg'},
-            'body': 'The Avengers movie was so cool!'
-        },
-        {
-            'author': {'username': 'Jodi'},
-            'body': 'The Other movie was so cool!'
-        }
-    ]
-    return render_template('index.html', user=user, posts=posts)
+    return render_template('index.html')
 
 
 # @app.route('/login', methods=('GET','POST'))
@@ -35,9 +20,12 @@ def index():
 #         return redirect(url_for('index'))
 #     return render_template('login.html', title='Sign In', form=form)
 
-@app.route('/rimoj')
+@app.route('/rimoj', methods=['GET','POST'])
 def rimoj():
-    query = request.args.get('query')
+    if request.method == 'GET':
+        query = request.args.get('r')
+    else:
+        query = request.form.get('query')
     results = []
     if query:
         df = pd.read_csv('./revo.csv', names=['link'], index_col=0)
