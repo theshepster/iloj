@@ -30,8 +30,8 @@ def rimoj():
     if query:
         df = pd.read_csv('./revo.csv', names=['link'], index_col=0)
         for i in range(len(query)-1):
-            nomatch = query[:i]
-            match = query[i:]
+            match = query[i:] # match only on the terminal slice of the word
+            nomatch = query[i-1:i] # don't match if the letter before the match string matches
             if match == query:
                 rule = match
             else:
@@ -43,4 +43,4 @@ def rimoj():
                                 words=filtered.index.to_list(),
                                 links=filtered['link'].to_list())
                 results.append(result)
-    return render_template('rimoj.html', results=results, form=SearchForm(), title='Rimoj')
+    return render_template('rimoj.html', results=results, form=SearchForm(), title='Rimoj', method=request.method)
