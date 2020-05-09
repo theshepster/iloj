@@ -1,5 +1,57 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
+<p>
+    {{ wtf.quick_form(form, method='POST') }}
+</p>
+<br>
+    {% if results|length == 0 and method == 'POST' %}
 
+        <dl class="errors">
+            <dt>Ho, baf!</dt>
+            <dd>Neniu traf'. Provu per alia paf'!</dd>
+        </dl>
+
+    {% endif %}
+
+    {% for result in results %}
+        <h2>{{ result.matchString }}</h2>
+        <br>
+        {% for match in result.wordLinks %}
+        <div>
+            <p>
+                <a href="{{ match[1] }}">{{ match[0] }}</a>
+            </p>
+        </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script> 
+    queryBox = document.getElementById('query')
+
+    const replaceChars = function(e) {
+        newVal = e.target.value.toLowerCase()
+        newVal = newVal.replace('gx', 'ĝ');    
+        newVal = newVal.replace('cx', 'ĉ'); 
+        newVal = newVal.replace('sx', 'ŝ'); 
+        newVal = newVal.replace('hx', 'ĥ'); 
+        newVal = newVal.replace('jx', 'ĵ'); 
+        newVal = newVal.replace('ux', 'ŭ'); 
+        e.target.value = newVal;
+    }
+
+    queryBox.addEventListener('input', replaceChars);
+    queryBox.addEventListener('propertychange', replaceChars);
+</script>
+
+<script>
+    radikoj = document.getElementById('radikoj')
+    radikoj.setAttribute('data-toggle', 'toggle')
+    radikoj.setAttribute('data-on', 'Nur radikojn')
+    radikoj.setAttribute('data-off', 'Tutan ReVon')
+</script>
 {% endblock %}

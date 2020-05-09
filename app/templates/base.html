@@ -3,9 +3,13 @@
 {% block html_attribs %} lang="eo" {% endblock %}
 
 {% block title %}
-    {% if title %}{{ title }} - Iloj
-    {% else %}Bonvenon al Iloj!
-    {% endif %}
+    Rimaro
+{% endblock %}
+
+{% block styles %}
+  {{ super() }}
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <link href="../static/common.css" rel="stylesheet">
 {% endblock %}
 
 {% block navbar %}
@@ -13,33 +17,29 @@
       <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only">Baskulu navigaciilon</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url_for('index') }}">Iloj</a>
+            <a class="navbar-brand" href="{{ url_for('index') }}">Rimaro</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('rimoj') }}">Rimoj</a></li>
+                <li><a href="{{ url_for('pri') }}">Pri</a></li>
             </ul>
         </div>
       </div>
     </nav>
 {% endblock %}
 
+{% block scripts %}
+  {{ super() }}
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+{% endblock %}
+
 {% block content %}
     <div class="container">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-info" role="alert">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-        {% endwith %}
-
-        {# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
     </div>
 {% endblock %}

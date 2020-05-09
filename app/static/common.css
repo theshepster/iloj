@@ -1,0 +1,28 @@
+.errors {
+    border: 1px solid #ba1f35;
+    margin: 0;
+    padding: 0.5em 1em;
+    margin-bottom: 1.5em;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:5px
+}
+
+.errors dt {
+    color: #ba1f35;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    font-family: Arial, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0.3em;
+    padding-left: 2em;
+    background: transparent url("../static/error.png") no-repeat scroll left/2%
+}
+
+.errors dd {
+    line-height: 1.5em;
+    margin: 0;
+    padding:0
+}

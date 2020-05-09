@@ -5,30 +5,14 @@ from app.result import Result
 import pandas as pd
 import re
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('index.html')
-
-
-# @app.route('/login', methods=('GET','POST'))
-# def login():
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         flash('Login requested for user {}, remember_me={}'.format(
-#             form.username.data, form.remember_me.data))
-#         return redirect(url_for('index'))
-#     return render_template('login.html', title='Sign In', form=form)
-
-@app.route('/rimoj', methods=['GET','POST'])
-def rimoj():
-    if request.method == 'GET':
-        query = request.args.get('r')
-    else:
-        query = request.form.get('query')
+    query = request.form.get('query')
+    radikoj = request.form.get('radikoj')
     results = []
     if query:
-        df = pd.read_csv('./revo.csv', names=['link'], index_col=0)
+        filepath = './revo_radikoj.csv' if radikoj else './revo.csv'
+        df = pd.read_csv(filepath, names=['link'], index_col=0)
         for i in range(len(query)-1):
             match = query[i:] # match only on the terminal slice of the word
             nomatch = query[i-1:i] # don't match if the letter before the match string matches
@@ -43,4 +27,8 @@ def rimoj():
                                 words=filtered.index.to_list(),
                                 links=filtered['link'].to_list())
                 results.append(result)
-    return render_template('rimoj.html', results=results, form=SearchForm(), title='Rimoj', method=request.method)
+    return render_template('index.html', results=results, form=SearchForm(), method=request.method)
+
+@app.route('/pri')
+def pri():
+    return render_template('pri.html')
