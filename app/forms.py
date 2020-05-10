@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired
 
 class SearchForm(FlaskForm):
     query = StringField('Rimiĝantaj Literoj')
-    radikoj = BooleanField('', default=True)
+    radikoj = BooleanField('Serĉu tra', default=True)
     submit = SubmitField('Rimu')

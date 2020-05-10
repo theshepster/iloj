@@ -2,10 +2,25 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-<p>
-    {{ wtf.quick_form(form, method='POST') }}
-</p>
-<br>
+    <form action="" method="POST" class=form role="form">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.query.label(class='control-label') }}
+            {{ form.query(class='form-control') }}
+        </div>
+        <p>
+            <b>Sugesto 1: </b>tajpu tutan vorton, aŭ tajpu nur radikon (forlasante la lastan vokalon).
+            <br>
+            <b>Sugesto 2: </b>tajpu laŭ x-sistemo, aŭ uzu verajn supersignojn.
+        </p>
+        <div class="form-group">
+            {{ form.radikoj.label }}
+            <br>
+            {{ form.radikoj(class='form-control') }}
+        </div>
+        {{ form.submit(class='btn btn-primary') }}
+    </form>
+    <br>   
     {% if results|length == 0 and method == 'POST' %}
 
         <dl class="errors">
@@ -51,7 +66,9 @@
 <script>
     radikoj = document.getElementById('radikoj')
     radikoj.setAttribute('data-toggle', 'toggle')
-    radikoj.setAttribute('data-on', 'Nur radikojn')
-    radikoj.setAttribute('data-off', 'Tutan ReVon')
+    radikoj.setAttribute('data-on', 'Nur radikoj')
+    radikoj.setAttribute('data-off', 'La tuta ReVo')
+    radikoj.setAttribute('data-onstyle', 'default')
+
 </script>
 {% endblock %}
