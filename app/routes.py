@@ -13,7 +13,7 @@ def index():
     if query:
         filepath = './revo_radikoj.csv' if radikoj else './revo.csv'
         df = pd.read_csv(filepath, names=['link'], index_col=0)
-        for i in range(len(query)-1):
+        for i in range(len(query)):
             match = query[i:] # match only on the terminal slice of the word
             nomatch = query[i-1:i] # don't match if the letter before the match string matches
             if match == query:
