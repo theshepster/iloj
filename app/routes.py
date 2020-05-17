@@ -16,6 +16,9 @@ def index():
         df = pd.read_csv(filepath, names=['link'], index_col=0)
         for i in range(min(len(query),20)):
             match = query[i:] # match only on the terminal slice of the word
+            # skip when there are no more vowels
+            if not re.match('^.*[aeiou].*$', match):
+                break
             nomatch = query[i-1:i] # don't match if the letter before the match string matches
             rule = match if match == query else '(?<!{nomatch}){match}'.format(nomatch=nomatch, match=match)
             ending = '[aeiou]?'
