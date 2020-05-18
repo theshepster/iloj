@@ -34,3 +34,7 @@ def index():
 @app.route('/pri')
 def pri():
     return render_template('pri.html')
+
+@app.route('/sxangxlisto')
+def sxangxlisto():
+    return render_template('sxangxlisto.html')
