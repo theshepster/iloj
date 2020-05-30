@@ -9,16 +9,12 @@
             {{ form.query(class='form-control', maxlength=20) }}
         </div>
         <p>
-            <b>Sugesto: </b>tajpu laŭ x-sistemo, aŭ uzu verajn supersignojn.
+            <b>Sugesto 1: </b>
+            Rimaro serĉas tra la Reta Vortaro nur la radikojn, do forlasu la lastan vokalon.
+            Ekz: se vi volas trovi la rimojn de "saluton", tajpu nur "salut". 
+            <br>
+            <b>Sugesto 2: </b>tajpu laŭ x-sistemo, aŭ uzu verajn supersignojn.
         </p>
-        <div class="form-group">
-            {{ form.radikoj.label }}
-            {{ form.radikoj(class='form-control', width=45) }}
-        </div>
-        <div class="form-group">
-            {{ form.vokalo.label }}
-            {{ form.vokalo(class='form-control', width=45) }}
-        </div>
         {{ form.submit(class='btn btn-primary') }}
     </form>
     <br>   
@@ -62,21 +58,5 @@
 
     queryBox.addEventListener('input', replaceChars);
     queryBox.addEventListener('propertychange', replaceChars);
-</script>
-
-<script>
-    radikoj = document.getElementById('radikoj')
-    radikoj.setAttribute('data-toggle', 'toggle')
-    radikoj.setAttribute('data-on', 'Radikojn')
-    radikoj.setAttribute('data-off', 'Derivaĵojn')
-    radikoj.setAttribute('data-onstyle', 'default')
-    radikoj.setAttribute('width', '70em')
-    radikoj.setAttribute('min-width', '70em')
-
-    vokalo = document.getElementById('vokalo')
-    vokalo.setAttribute('data-toggle', 'toggle')
-    vokalo.setAttribute('data-on', 'Jes')
-    vokalo.setAttribute('data-off', 'Ne')
-    vokalo.setAttribute('data-onstyle', 'default')
 </script>
 {% endblock %}

@@ -10,14 +10,11 @@ import re
 @app.route('/', methods=['GET','POST'])
 def index():
     query = request.form.get('query')
-    radikoj = request.form.get('radikoj')
-    vokalo = request.form.get('vokalo')
+    radikoj = True # request.form.get('radikoj')
     results = []
     if query:
         # clean the query
         query = "".join(re.split("[^a-zA-ZĉŝĥĵĝŭĈŜĤĴĜŬ.]*", query)) # only letters from query
-        if vokalo and (query[-1] in 'aeiou'):
-            query  = query[:-1]
 
         # load and prepare the file of roots or words
         filepath = './revo_radikoj_git.csv' if radikoj else './revo_vortoj_git.csv'
