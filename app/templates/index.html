@@ -9,14 +9,15 @@
             {{ form.query(class='form-control', maxlength=20) }}
         </div>
         <p>
-            <b>Sugesto 1: </b>tajpu tutan vorton, aŭ tajpu nur radikon (forlasante la lastan vokalon).
-            <br>
-            <b>Sugesto 2: </b>tajpu laŭ x-sistemo, aŭ uzu verajn supersignojn.
+            <b>Sugesto: </b>tajpu laŭ x-sistemo, aŭ uzu verajn supersignojn.
         </p>
         <div class="form-group">
             {{ form.radikoj.label }}
-            <br>
-            {{ form.radikoj(class='form-control') }}
+            {{ form.radikoj(class='form-control', width=45) }}
+        </div>
+        <div class="form-group">
+            {{ form.vokalo.label }}
+            {{ form.vokalo(class='form-control', width=45) }}
         </div>
         {{ form.submit(class='btn btn-primary') }}
     </form>
@@ -66,9 +67,16 @@
 <script>
     radikoj = document.getElementById('radikoj')
     radikoj.setAttribute('data-toggle', 'toggle')
-    radikoj.setAttribute('data-on', 'Nur radikoj')
-    radikoj.setAttribute('data-off', 'La tuta ReVo')
+    radikoj.setAttribute('data-on', 'Radikojn')
+    radikoj.setAttribute('data-off', 'Derivaĵojn')
     radikoj.setAttribute('data-onstyle', 'default')
+    radikoj.setAttribute('width', '70em')
+    radikoj.setAttribute('min-width', '70em')
 
+    vokalo = document.getElementById('vokalo')
+    vokalo.setAttribute('data-toggle', 'toggle')
+    vokalo.setAttribute('data-on', 'Jes')
+    vokalo.setAttribute('data-off', 'Ne')
+    vokalo.setAttribute('data-onstyle', 'default')
 </script>
 {% endblock %}
