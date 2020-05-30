@@ -9,12 +9,15 @@
             {{ form.query(class='form-control', maxlength=20) }}
         </div>
         <p>
-            <b>Sugesto 1: </b>
-            Rimaro serĉas tra la Reta Vortaro nur la radikojn, do forlasu la lastan vokalon.
-            Ekz: se vi volas trovi la rimojn de "saluton", tajpu nur "salut". 
+            <b>Sugesto 1: </b>tajpu tutan vorton, aŭ tajpu nur radikon (forlasante la lastan vokalon).
             <br>
             <b>Sugesto 2: </b>tajpu laŭ x-sistemo, aŭ uzu verajn supersignojn.
         </p>
+        <div class="form-group">
+            {{ form.radikoj.label }}
+            <br>
+            {{ form.radikoj(class='form-control') }}
+        </div>
         {{ form.submit(class='btn btn-primary') }}
     </form>
     <br>   
@@ -58,5 +61,14 @@
 
     queryBox.addEventListener('input', replaceChars);
     queryBox.addEventListener('propertychange', replaceChars);
+</script>
+
+<script>
+    radikoj = document.getElementById('radikoj')
+    radikoj.setAttribute('data-toggle', 'toggle')
+    radikoj.setAttribute('data-on', 'Nur radikoj')
+    radikoj.setAttribute('data-off', 'La tuta ReVo')
+    radikoj.setAttribute('data-onstyle', 'default')
+
 </script>
 {% endblock %}

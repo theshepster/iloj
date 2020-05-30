@@ -10,14 +10,14 @@ import re
 @app.route('/', methods=['GET','POST'])
 def index():
     query = request.form.get('query')
-    radikoj = True # request.form.get('radikoj')
+    radikoj = request.form.get('radikoj')
     results = []
     if query:
         # clean the query
         query = "".join(re.split("[^a-zA-ZĉŝĥĵĝŭĈŜĤĴĜŬ.]*", query)) # only letters from query
 
         # load and prepare the file of roots or words
-        filepath = './revo_radikoj_git.csv' if radikoj else './revo_vortoj_git.csv'
+        filepath = './revo_radikoj_git.csv' if radikoj else './revo.csv'
         ending = '' if radikoj else '[aeiou]?' # if looking for all words, look for all vowel endings
         df = pd.read_csv(filepath, names=['link'], index_col=0)
 
